@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ApiConfig from '../services/ApiConfig';
+import ApiConfig from '../services/AppConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SOAP_AUTH_URL = `${ApiConfig.getBaseUrl()}/_vti_bin/authentication.asmx`; 

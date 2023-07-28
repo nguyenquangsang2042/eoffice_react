@@ -1,3 +1,5 @@
+import { Connection } from "typeorm/browser";
+
 class ApiConfig {
     private static BASE_URL: string = 'https://petrolimex.vuthao.com'; //dev
     //private static BASE_URL: string = 'https://daotaoeoffice.petrolimex.com.vn'; //dev
@@ -10,7 +12,15 @@ class ApiConfig {
     static setBaseUrl(newBaseUrl: string): void {
       ApiConfig.BASE_URL = newBaseUrl;
     }
-    
+
+    private static SUBSITE:string='';
+    static getSubSite(): string {
+      return ApiConfig.SUBSITE;
+    }
+  
+    static setSubSite(newSubsite: string): void {
+      ApiConfig.SUBSITE = newSubsite;
+    }
   }
   export default ApiConfig;
   
