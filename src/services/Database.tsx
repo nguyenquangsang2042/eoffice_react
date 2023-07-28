@@ -1,6 +1,7 @@
 // Database.ts
 import { getConnectionManager, Connection } from 'typeorm/browser';
 import { BanLanhDao } from '../models/app/BanLanhDao';
+import { DBVariable } from '../models/app/DBVariable';
 
 export class Database {
   private static db: Promise<Connection | null> | null = null;
@@ -14,7 +15,7 @@ export class Database {
         location: 'default',
         synchronize: true,
         logging: true,
-        entities: [BanLanhDao],
+        entities: [DBVariable,BanLanhDao],
       }).connect();
     }
 

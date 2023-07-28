@@ -3,11 +3,13 @@ import { Connection } from 'typeorm/browser';
 import { Database } from '../services/Database';
 import { BanLanhDao } from '../models/app/BanLanhDao';
 import { BanLanhDaoRepository } from '../models/app/BanLanhDaoRepository';
+import { DBVariableRepository } from '../models/app/DBVariableRepository';
 
 export class DbController {
   private static instance: DbController | null = null;
   private connection: any;
   private banLanhDaoRepository: BanLanhDaoRepository | null = null;
+  private dbVariableRepository: DBVariableRepository | null = null;
 
   private constructor() {}
 
@@ -22,6 +24,7 @@ export class DbController {
     if (!this.connection) {
       this.connection = await Database.getDb();
       this.banLanhDaoRepository = this.connection.getCustomRepository(BanLanhDaoRepository);
+      this.dbVariableRepository = this.connection.getCustomRepository(DBVariableRepository);
     }
   }
 
@@ -30,6 +33,7 @@ export class DbController {
       await Database.closeDb();
       this.connection = null;
       this.banLanhDaoRepository = null;
+      this.dbVariableRepository = this.connection.getCustomRepository(DBVariableRepository);
     }
   }
 

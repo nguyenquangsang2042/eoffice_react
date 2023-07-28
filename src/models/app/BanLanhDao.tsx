@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn } from 'typeorm';
 import ApiConfig from '../../services/AppConfig';
 import 'reflect-metadata';
 @Entity()
 export class BanLanhDao {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({type:'int'})
   ID!: number;
   @Column({ type: 'varchar' })
   Title!: string;
@@ -36,7 +36,6 @@ export class BanLanhDao {
   ThayThe!: string;
   IsSelected!: boolean;
   IsLoadImage!: boolean;
-  constructor(){}
   public static GetServerUrl(): string {
     const serverUrl =`${ApiConfig.getSubSite()}/_layouts/15/VuThao.Petrolimex.API/ApiMobilePublic.ashx?func=getV2&type=1&lname=Ban lãnh Đạo&cols=["ID", "Title", "DonVi", "Modified", "Created", "LanhDao", "UyQuyen", "Orders", "Group", "OneAssign", "ThayThe"]&wname=vanban`;
     return encodeURI(serverUrl);

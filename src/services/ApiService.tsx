@@ -41,6 +41,7 @@ class APIService {
           headers: this.headers,
           params,
         });
+        console.log(decodeURI(`url :${this.baseURL}${endpoint}`));
         console.log(response.data);
         resolve(response.data);
       } catch (error) {
@@ -65,7 +66,9 @@ class APIService {
         const response: AxiosResponse<T> = await axios.post(`${this.baseURL}${endpoint}`, data, {
           headers: this.headers,
         });
-
+        console.log(decodeURI(`url: ${this.baseURL}${endpoint}`));
+        console.log(`data: ${data}`);
+        console.log(response.data);
         resolve(response.data);
       } catch (error) {
         reject(error);

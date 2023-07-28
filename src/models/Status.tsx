@@ -1,7 +1,7 @@
 class Status {
     status?: string;
     mess?: Mess;
-    dateNow?: string;
+    dateNow?: Date;
     constructor() {}
   }
   
