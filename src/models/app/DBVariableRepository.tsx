@@ -1,6 +1,6 @@
 // DBVariableRepository.ts
-import { EntityRepository, Repository } from 'typeorm';
-import { DBVariable } from './DBVariable';
+import {EntityRepository, Repository} from 'typeorm';
+import {DBVariable} from './DBVariable';
 
 @EntityRepository(DBVariable)
 export class DBVariableRepository extends Repository<DBVariable> {

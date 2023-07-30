@@ -1,11 +1,9 @@
-
-import React from 'react';                            // Adjust the import path based on your file structure
+import React from 'react'; // Adjust the import path based on your file structure
 import LoginScreen from './src/screens/LoginScreen';
-import { DbController } from './src/controllers/DBController';
-      
+import {DbController} from './src/controllers/DBController';
 
 function App(): JSX.Element {
   DbController.getInstance().initialize();
-  return (<LoginScreen/>);
+  return <LoginScreen />;
 }
 export default App;

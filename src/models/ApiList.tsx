@@ -1,4 +1,4 @@
-import { Status, Mess } from './status'; // Assuming 'status.ts' contains the TypeScript classes for Status and Mess
+import {Status} from './status'; // Assuming 'status.ts' contains the TypeScript classes for Status and Mess
 
 class ApiList<T> extends Status {
   data: T[] = [];

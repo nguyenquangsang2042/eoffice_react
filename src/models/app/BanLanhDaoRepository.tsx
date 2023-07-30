@@ -1,9 +1,8 @@
-import { EntityRepository, Repository } from 'typeorm';
-import { BanLanhDao } from './BanLanhDao';
+import {EntityRepository, Repository} from 'typeorm';
+import {BanLanhDao} from './BanLanhDao';
 
 @EntityRepository(BanLanhDao)
 export class BanLanhDaoRepository extends Repository<BanLanhDao> {
-  
   async findByTitle(title: string): Promise<BanLanhDao[]> {
     const queryString = `SELECT * FROM ban_lanh_dao WHERE title LIKE '%${title}%'`;
     return this.query(queryString);

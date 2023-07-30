@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import ApiConfig from './AppConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -16,8 +16,8 @@ class APIService {
   private getCookie(): Promise<string | null> {
     return new Promise((resolve, reject) => {
       AsyncStorage.getItem('set-cookie')
-        .then((cookie) => resolve(cookie))
-        .catch((error) => {
+        .then(cookie => resolve(cookie))
+        .catch(error => {
           console.error('Error getting cookie from async storage:', error);
           reject(error);
         });
@@ -29,19 +29,22 @@ class APIService {
     return new Promise(async (resolve, reject) => {
       try {
         const cookie = await this.getCookie();
+        console.log(decodeURI(`url :${this.baseURL}${endpoint}`));
 
         if (cookie) {
           if (!this.headers) {
             this.headers = {};
           }
-          this.headers['Cookie'] = cookie;
+          this.headers.Cookie = cookie;
         }
 
-        const response: AxiosResponse<T> = await axios.get(`${this.baseURL}${endpoint}`, {
-          headers: this.headers,
-          params,
-        });
-        console.log(decodeURI(`url :${this.baseURL}${endpoint}`));
+        const response: AxiosResponse<T> = await axios.get(
+          `${this.baseURL}${endpoint}`,
+          {
+            headers: this.headers,
+            params,
+          },
+        );
         console.log(response.data);
         resolve(response.data);
       } catch (error) {
@@ -60,12 +63,16 @@ class APIService {
           if (!this.headers) {
             this.headers = {};
           }
-          this.headers['Cookie'] = cookie;
+          this.headers.Cookie = cookie;
         }
 
-        const response: AxiosResponse<T> = await axios.post(`${this.baseURL}${endpoint}`, data, {
-          headers: this.headers,
-        });
+        const response: AxiosResponse<T> = await axios.post(
+          `${this.baseURL}${endpoint}`,
+          data,
+          {
+            headers: this.headers,
+          },
+        );
         console.log(decodeURI(`url: ${this.baseURL}${endpoint}`));
         console.log(`data: ${data}`);
         console.log(response.data);

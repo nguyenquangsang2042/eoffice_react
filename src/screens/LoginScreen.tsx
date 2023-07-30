@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert, Keyboard, ImageBackground } from 'react-native';
-import { loginUser } from '../controllers/LoginController'
-import LoginResponse from '../models/LoginResponse';
-import ApiService from '../services/ApiService';
-import { BanLanhDao } from '../models/app/BanLanhDao';
+import React, {useState} from 'react';
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Alert,
+  Keyboard,
+  ImageBackground,
+} from 'react-native';
+import {loginUser} from '../controllers/LoginController';
 
 const LoginScreen: React.FC = () => {
   const [username, setUsername] = useState('tphong1');
@@ -12,17 +17,16 @@ const LoginScreen: React.FC = () => {
 
   const handleLogin = () => {
     Keyboard.dismiss();
-    loginUser(username, password).then((res) => {
-    }).catch((ex) => {
-      Alert.alert('Login Failed', ex?.message);
-    });
-
+    loginUser(username, password)
+      .then(res => {})
+      .catch(ex => {
+        Alert.alert('Login Failed', ex?.message);
+      });
   };
   return (
     <ImageBackground
       source={require('../../assets/image/icon_splashscreen.png')} // Replace with the path to your image
-      style={styles.backgroundImage}
-    >
+      style={styles.backgroundImage}>
       <View style={styles.container}>
         <TextInput
           style={styles.input}

@@ -1,22 +1,24 @@
 // Database.ts
-import { getConnectionManager, Connection } from 'typeorm/browser';
-import { BanLanhDao } from '../models/app/BanLanhDao';
-import { DBVariable } from '../models/app/DBVariable';
+import {getConnectionManager, Connection} from 'typeorm/browser';
+import {BanLanhDao} from '../models/app/BanLanhDao';
+import {DBVariable} from '../models/app/DBVariable';
 
 export class Database {
   private static db: Promise<Connection | null> | null = null;
 
-    static async initializeDatabase(): Promise<void> {
+  static async initializeDatabase(): Promise<void> {
     if (!Database.db) {
       const connectionManager = getConnectionManager();
-      Database.db = connectionManager.create({
-        type: 'react-native',
-        database: 'your-database-name.db',
-        location: 'default',
-        synchronize: true,
-        logging: true,
-        entities: [DBVariable,BanLanhDao],
-      }).connect();
+      Database.db = connectionManager
+        .create({
+          type: 'react-native',
+          database: 'your-database-name.db',
+          location: 'default',
+          synchronize: true,
+          logging: true,
+          entities: [DBVariable, BanLanhDao],
+        })
+        .connect();
     }
 
     await Database.db;
